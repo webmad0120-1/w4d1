@@ -1,6 +1,7 @@
 // here in order to copy this array we only need shallow copy
 // as every value is a primitive (number)
 let scores = [10, 8, 8, 10, 7.5];
+let shallowCopy = [...scores];
 
 // here if we need a full copy of this array we need a deep copy
 // as every value is an object
@@ -14,3 +15,5 @@ let addresses = [
     postcode: 11200
   }
 ];
+
+let deepClone = JSON.parse(JSON.stringify(addresses));
