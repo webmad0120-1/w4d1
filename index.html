@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .error {
+        display: none;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <h1>Product xxxx</h1>
+      <label>Price (without decimals) <input type="number" id="price"/></label>
+      <span class="error"></span>
+      <button>Save product</button>
+    </form>
+
+    <script>
+      document.querySelector("button").onclick = function() {
+        let price = document.querySelector("#price").value;
+
+        try {
+          if (price.indexOf(".") > -1) {
+            throw new RangeError(
+              "Your price has decimals and that's forbidden"
+            );
+          } else {
+            alert("price tag is correct, send to the server...");
+          }
+        } catch (myError) {
+          document.querySelector(".error").style.display = "block";
+          //   document.querySelector(".error").innerHTML = myError
+          //     .toString()
+          //     .split("RangeError: ")[1];
+
+          document.querySelector(
+            ".error"
+          ).innerHTML = myError.toString().replace("RangeError: ", "");
+        }
+      };
+    </script>
+  </body>
+</html>
